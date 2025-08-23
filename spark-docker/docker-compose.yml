@@ -5,9 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: spark
-    # Usa UID/GID do usuário local
-    user: "${LOCAL_UID}:${LOCAL_GID}"
+    container_name: spark-notebook
     tty: true
     stdin_open: true
     ports:
@@ -26,5 +24,4 @@ services:
       --port=8888
       --no-browser
       --allow-root
-      --notebook-dir=/opt/spark/apps
       --NotebookApp.token=''

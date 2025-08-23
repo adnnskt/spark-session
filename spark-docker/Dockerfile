@@ -1,16 +1,27 @@
-FROM apache/spark:3.5.1
+FROM openjdk:8
 
-USER root
+# Variáveis do Spark
+ENV SPARK_VERSION=3.5.0 \
+    HADOOP_VERSION=3 \
+    SPARK_HOME=/opt/spark \
+    PATH=$PATH:/opt/spark/bin
 
-# Atualiza e instala pip e dependências
-RUN apt-get update && apt-get install -y python3-pip python3-dev \
-    && pip3 install --upgrade pip
+# Instala dependências + Python + pip
+RUN apt-get update && apt-get install -y \
+    curl \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
-# Instala Jupyter Notebook e PySpark
-RUN pip3 install notebook jupyterlab pyspark
+# Baixa e instala o Spark
+RUN curl -sL https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz | tar -xz -C /opt \
+    && mv /opt/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /opt/spark
 
-# Ajusta permissões do usuário spark
-RUN mkdir -p /home/spark && chown -R spark:spark /home/spark
+# Instala Jupyter e PySpark
+RUN pip3 install --no-cache-dir jupyter pyspark findspark
 
-USER spark
+# Cria diretório de trabalho
 WORKDIR /opt/spark/apps
+
+# Porta padrão do Jupyter
+EXPOSE 8888
