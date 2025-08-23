@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  spark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spark
+    user: root
+    tty: true
+    stdin_open: true
+    ports:
+      - "4040:4040"   # Spark UI
+      - "8080:8080"   # Spark Master UI
+      - "8888:8888"   # Jupyter Notebook
+    volumes:
+      - ./apps:/opt/spark/apps
+      - ./data:/opt/spark/data
+    environment:
+      - PYSPARK_PYTHON=python3
+    working_dir: /opt/spark/apps
+    command: >
+      jupyter notebook
+      --ip=0.0.0.0
+      --port=8888
+      --no-browser
+      --allow-root
+      --notebook-dir=/opt/spark/apps
+      --NotebookApp.token=''
