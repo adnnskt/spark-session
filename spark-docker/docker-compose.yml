@@ -6,7 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: spark
-    user: root
+    # Usa UID/GID do usuário local
+    user: "${LOCAL_UID}:${LOCAL_GID}"
     tty: true
     stdin_open: true
     ports:
