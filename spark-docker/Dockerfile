@@ -21,6 +21,9 @@ RUN curl -sL https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-
 # Instala Jupyter e PySpark compatível com Spark 3.5.0
 RUN pip3 install --no-cache-dir jupyter pyspark==3.5.0 findspark
 
+# Baixa o driver JDBC do PostgreSQL
+RUN curl -L -o /opt/spark/jars/postgresql-42.7.3.jar https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
+
 # Cria diretório de trabalho
 WORKDIR /opt/spark/apps
 

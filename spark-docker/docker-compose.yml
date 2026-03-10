@@ -25,3 +25,19 @@ services:
       --no-browser
       --allow-root
       --NotebookApp.token=''
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: sparkuser
+      POSTGRES_PASSWORD: sparkpass
+      POSTGRES_DB: sparkdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
