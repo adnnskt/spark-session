@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM eclipse-temurin:11-jdk
 
 # Variáveis do Spark
 ENV SPARK_VERSION=3.5.0 \
