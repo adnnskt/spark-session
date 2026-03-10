@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:8-jdk
 
 # Variáveis do Spark
 ENV SPARK_VERSION=3.5.0 \
