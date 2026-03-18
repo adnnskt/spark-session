@@ -32,3 +32,6 @@ EXPOSE 8888
 
 # Comando padrão ao iniciar o container
 CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
+
+# Instala psycopg2-binary para conexão com PostgreSQL
+RUN pip3 install --break-system-packages --no-cache-dir psycopg2-binary
