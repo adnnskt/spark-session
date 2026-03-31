@@ -24,6 +24,9 @@ RUN pip3 install --break-system-packages --no-cache-dir jupyter pyspark==3.5.0 f
 # Baixa o driver JDBC do PostgreSQL
 RUN curl -L -o /opt/spark/jars/postgresql-42.7.3.jar https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
 
+# Baixa o conector MongoDB para Spark
+RUN curl -L -o /opt/spark/jars/mongo-spark-connector_2.12-3.0.1.jar https://repo1.maven.org/maven2/org/mongodb/spark/mongo-spark-connector_2.12/3.0.1/mongo-spark-connector_2.12-3.0.1.jar
+
 # Cria diretório de trabalho
 WORKDIR /opt/spark/apps
 
