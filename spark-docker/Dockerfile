@@ -27,6 +27,10 @@ RUN curl -L -o /opt/spark/jars/postgresql-42.7.3.jar https://jdbc.postgresql.org
 # Baixa o conector MongoDB para Spark
 RUN curl -L -o /opt/spark/jars/mongo-spark-connector_2.12-3.0.1.jar https://repo1.maven.org/maven2/org/mongodb/spark/mongo-spark-connector_2.12/3.0.1/mongo-spark-connector_2.12-3.0.1.jar
 
+# Baixa dependências do conector MongoDB
+RUN curl -L -o /opt/spark/jars/mongo-java-driver-3.12.14.jar https://repo1.maven.org/maven2/org/mongodb/mongo-java-driver/3.12.14/mongo-java-driver-3.12.14.jar \
+    && curl -L -o /opt/spark/jars/bson-3.12.14.jar https://repo1.maven.org/maven2/org/mongodb/bson/3.12.14/bson-3.12.14.jar
+
 # Cria diretório de trabalho
 WORKDIR /opt/spark/apps
 
