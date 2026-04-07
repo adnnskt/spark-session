@@ -2,6 +2,8 @@ import sys, getopt
 from pyspark.sql import SparkSession 
 from pyspark.sql.functions import * 
 
+#Programa para converter o formato de um arquivo através de parâmetros na chamada do .py 
+
 if __name__ == "__main__":
     spark = SparkSession.builder.appName("convert file.py").getOrCreate()
     opts, args = getopt.getopt(sys.argv[1:], "t:i:o")
